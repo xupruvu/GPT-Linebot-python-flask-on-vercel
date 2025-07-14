@@ -52,6 +52,18 @@ fork 一份檔案到自己的帳號底下，等等我們會使用到
 
 > 請務必複製下來，這個 KEY 我們取名為 `OPENAI_API_KEY `
 
+## step 2.1. 支援 Groq LLM（Gemma2 等）
+
+若要改用 Groq 的 LLM（如 Gemma2），請先到 [Groq Console](https://console.groq.com/) 申請 API KEY，並在 Vercel 或本地環境設定下列環境變數：
+
+|環境變數名稱   |說明|
+|--------------|----|
+| USE_GROQ     | 設為 true 時，會改用 Groq API，否則預設用 OpenAI |
+| GROQ_API_KEY | 你的 Groq API 金鑰 |
+| GROQ_MODEL   | Groq 支援的模型名稱（如 gemma-7b-it、gemma2-9b-it 等）|
+
+安裝依賴時會自動安裝 groq 套件。
+
 ## step 3. 去 line developer 建立一個新的機器人
 
 > 這邊熟悉的人動作應該超快，可以略過，
@@ -137,7 +149,9 @@ Import Git Repository，選擇你剛剛 fork 的專案 import
 
 [![](https://www.wongwonggoods.com/wp-content/uploads/2022/12/截圖-2022-12-13-下午7.39.19.png)](https://www.wongwonggoods.com/portfolio/personal_project/gpt-linebot-python-flask-for-vercel/attachment/%e6%88%aa%e5%9c%96-2022-12-13-%e4%b8%8b%e5%8d%887-39-19/)
 
-### step 4-2. 設定環境變數
+### step 4-2. 設定環境變數（補充）
+
+若要切換 LLM 來源，請設定 USE_GROQ 為 true（Groq）或 false（OpenAI）。
 
 選擇「Environment Variables」，把我們剛剛紀錄的 OPENAI_API_KEY、LINE_CHANNEL_SECRET、LINE_CHANNEL_ACCESS_TOKEN 都設定至環境變數，
 按下 Deploy 等待一下就完成囉！
@@ -215,7 +229,9 @@ Import Git Repository，選擇你剛剛 fork 的專案 import
 | OPENAI_MAX_TOKENS       | 240             | 請參考 OpenAI 對 [max_tokens](https://beta.openai.com/docs/api-reference/completions/create#completions/create-max_tokens) 的敘述|
 | MSG_LIST_LIMIT          | 20              | prompt 參數往回參照的句數|
 | INIT_LANGUAGE           | zh              | 決定初始語言，可設置為 "zh" 或 "en"|
-
+| USE_GROQ                | false           | 設為 true 時改用 Groq API |
+| GROQ_API_KEY            |                 | Groq API 金鑰 |
+| GROQ_MODEL              | gemma-7b-it     | Groq 支援的模型名稱 |
 
 
 # TODO List & Future Work
